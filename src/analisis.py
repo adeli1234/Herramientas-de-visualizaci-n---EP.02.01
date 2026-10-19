@@ -8,6 +8,9 @@ df = pd.read_csv("data/countries.csv")
 tabla = df.pivot_table(index="Region", values="HDI", aggfunc="mean")
 print(tabla)
 
+# Gráfica 1
+# Pregunta: ¿Cómo se distribuye el desarrollo humano en el mundo?
+
 plt.figure(figsize=(10, 6))
 sns.histplot(
     data=df,
@@ -20,4 +23,20 @@ plt.title("La mayoría de los países se concentran en niveles de desarrollo alt
 plt.xlabel("Índice de Desarrollo Humano (HDI)")
 plt.ylabel("Cantidad de Países")
 plt.savefig("output/hdi_distribution.png")
+
+# Gráfica 2
+# Pregunta: ¿Qué reguiones registran los promedios de desarrollo más altos?
+colores = ["#1C4C9A" if hdi > 0.8 else "#B9C3D1" for hdi in tabla["HDI"]]
+
+plt.figure(figsize=(10, 6))
+sns.barplot(
+    data=tabla,
+    x="HDI",
+    y="Region",
+    palette=colores
+)
+plt.title("Promedios de Desarrollo por Región")
+plt.xlabel("Índice de Desarrollo Humano (HDI)")
+plt.ylabel("Región")
+plt.savefig("output/hdi_por_region.png")
 
