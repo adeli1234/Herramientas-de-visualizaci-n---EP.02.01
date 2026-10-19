@@ -10,11 +10,13 @@ print(tabla)
 
 plt.figure(figsize=(10, 6))
 sns.histplot(
-    data=tabla,
-    y="HDI",
-    x="Region"
+    data=df,
+    x="HDI",
+    kde=True,
+    color="#1C4C9A",
+    bins=15
     )
-plt.title("Distribución del Índice de Desarrollo Humano (HDI) por Región")
+plt.title("La mayoría de los países se concentran en niveles de desarrollo alto y medio-alto")
 plt.xlabel("Índice de Desarrollo Humano (HDI)")
 plt.ylabel("Cantidad de Países")
 plt.savefig("output/hdi_distribution.png")
